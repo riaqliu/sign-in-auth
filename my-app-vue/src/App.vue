@@ -4,7 +4,8 @@ import SignInComponent from './components/SignInComponent.vue';
 
 <template>
   <div class="sign-in-form">
-    <SignInComponent/>
+    <!-- <SignInComponent/> -->
+     <router-view></router-view>
   </div>
 </template>
 

@@ -9,6 +9,7 @@ export default {
     },
     methods: {
         onSubmit() {
+            this.$router.push({ name: 'home', query: {username: this.username }})
             this.clearForm();
         },
 
@@ -23,8 +24,8 @@ export default {
     <div class="form-body">
         <h1>Sign In</h1>
         <form @submit.prevent="onSubmit()">
-            <p>Username: <input type="text" v-model="username" required></p>
-            <p>Password: <input type="password" v-model="password" required></p>
+            <p>Username: <input type="text" v-model="username"></p>
+            <p>Password: <input type="password" v-model="password"></p>
             <button type="submit">Sign In</button>
         </form>
     </div>
