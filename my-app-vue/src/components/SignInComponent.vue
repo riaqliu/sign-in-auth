@@ -18,7 +18,7 @@
             ...mapMutations('Auth', ['setError']),
 
             async onSubmit() {
-                this.$store.commit('setError', null);
+                this.setError(null);
                 this.isAuthenticating = true;
 
                 const data = {

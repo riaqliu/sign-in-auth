@@ -6,7 +6,7 @@
         created() {
             // Get user from local storage
             const storedUser = localStorage.getItem('user');
-            if (storedUser) this.setUser(JSON.parse(storedUser));
+            if (storedUser && !this.user) this.setUser(JSON.parse(storedUser));
 
 
             if (!this.user) {
