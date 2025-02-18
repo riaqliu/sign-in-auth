@@ -1,31 +1,33 @@
 <script>
+    import { mapMutations, mapState } from 'vuex';
+
     export default {
         name: 'Home',
-        data() {
-            return {
-                username: this.$route.query.username
+        created() {
+            // Get user from local storage
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) this.setUser(JSON.parse(storedUser));
+
+
+            if (!this.user) {
+                console.log("[DEBUG] User Unavailable. Redirecting to Sign-in Page");
+                this.$router.push('/sign-in');
             }
         },
         computed: {
-            usernameDisplay() {
-                return this.username ?? 'Anonymous';
+            ...mapState('Auth', ['user']),
+            username() {
+                return this.user?.username ?? 'Anonymous';
             }
         },
-        watch: {
-            username: {
-                handler() {
-                    if(['', undefined].includes(this.username)) {
-                        this.$router.push('/sign-in')
-                    }
-                },
-                immediate: true
-            }
+        methods: {
+            ...mapMutations('Auth', ['setUser'])
         }
     }
 </script>
 <template>
     <div>
-        <h1>Welcome {{usernameDisplay}}!</h1>
+        <h1>Welcome {{username}}!</h1>
     </div>
 </template>
 <style scoped>
